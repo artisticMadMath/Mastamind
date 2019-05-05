@@ -32,7 +32,8 @@ string GameSetup::SelectRandWord() {
    wordList.open("nameList.rtf");
 
    if (!wordList.is_open()) {
-      cout << "Text file " << endl;
+      cout << "Names list text file cannot open." << endl;
+      cout << "Exiting program." << endl;
       exit(0);
    }
 
@@ -51,9 +52,23 @@ string GameSetup::SelectRandWord() {
 
 // ---------- PRINTING ---------- //
 void GameSetup::PrintInstructions() {
+
    string instructions;
-   instructions = """ *** instructions here *** """;
+
+   instructions =
+   " ---- Welcome to MASTAMIND! ---- \n"
+   "   Game Objective:\n"
+   "     [x] A 4-lettered name will be selected from a list,"
+      " and your goal is to guess that name.\n"
+   "     [x] You can enter a guess";
+
    cout << instructions << endl;
+
+/*
+   cout << """*** Welcome to MASTAMIND ***""" << endl;
+   cout << """ Game Objective: """ << endl;
+   cout << """   test""" << endl;
+ */
 }
 
 // ---------- HELPERS ---------- //

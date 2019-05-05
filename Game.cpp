@@ -26,7 +26,7 @@ void Game::GetUserGuess() {
       GetUserGuess();
    }
 
-   CompareGuess(userGuess);
+   CompareGuess(GuessUppercase(userGuess));
 }
 
 bool Game::IsGuessValid(string guess) {
@@ -39,7 +39,7 @@ bool Game::IsGuessValid(string guess) {
 
    for (int i = 0; i < guess.size(); i++) {
       if (!(isalpha(guess.at(i)))) {
-         cout << "Please try again: guesses should consist of"
+         cout << "   Please try again: guesses should consist of"
          << " only letters (A-Z)." << endl;
          cout << endl;
          return false;
@@ -50,12 +50,14 @@ bool Game::IsGuessValid(string guess) {
 }
 
 void Game::CompareGuess(string guess) {
+   RaiseNumGuesses();
+
    if (guess == currGame.GetGameWord()) {
-      cout << "You got it!" << endl;
-      cout << "Total number of guesses: " << GetNumGuesses() << endl;
+      cout << "   You got it!" << endl;
+      cout << "   Total number of guesses: " << GetNumGuesses() << endl;
    }
    else if (!CheckGuessChar(guess)){
-      cout << "Got nothing out of that guess. Try again!" << endl;
+      cout << "   Got nothing out of that guess. Try again!" << endl;
       cout << endl;
       GetUserGuess();
    }
@@ -74,8 +76,22 @@ void Game::CompareGuess(string guess) {
 
 // ---------- HELPERS ---------- //
 
+string Game::GuessUppercase(string guess) {
+   string guessUpper;
+   char c;
+   int i = 0;
+
+   while (i < guess.size()) {
+      c = guess.at(i);
+      guessUpper += c;
+      i++;
+   }
+   //cout << guessUpper << endl; // TEST - FIXME
+   return guessUpper;
+}
+
 string Game::ResultAsterisks(string guess) {
-   string asterisks;
+   string asterisks = "   "; // for spacing
    string gameWord = currGame.GetGameWord();
 
    for (int i = 0; i < gameWord.size(); i++) {
@@ -88,7 +104,7 @@ string Game::ResultAsterisks(string guess) {
 }
 
 string Game::ResultHyphens(string guess) {
-   string hyphens;
+   string hyphens = "   "; // for spacing
    string gameWord = currGame.GetGameWord();
    size_t found;
    int i = 0;
@@ -107,7 +123,6 @@ string Game::ResultHyphens(string guess) {
 bool Game::CheckGuessChar(string guess) {
    string gameWord = currGame.GetGameWord();
    size_t found;
-
 
    for (int i = 0; i < guess.size(); i++) {
       found = gameWord.find(guess.at(i));

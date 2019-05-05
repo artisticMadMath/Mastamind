@@ -4,6 +4,6 @@
 #include <iostream>
 
 int main() {
-   Game testGame = Game();
-   testGame.GetUserGuess();
+   Game newGame = Game();
+   newGame.GetUserGuess();
 }

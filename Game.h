@@ -29,6 +29,7 @@ public:
    void CompareGuess(string guess);
 
    // HELPER FUNCTIONS
+   string GuessUppercase(string guess);
    string ResultAsterisks(string guess);
    string ResultHyphens(string guess);
    bool CheckGuessChar(string guess);
